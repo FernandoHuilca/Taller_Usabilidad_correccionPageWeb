@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Formulario</title>
+		<style>
+			.boton {
+				background: #ccc;
+				color: #aaa;
+				padding: 10px;
+				cursor: pointer;
+			}
+			.pagina-navegacion {
+				margin: 16px 0;
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+			}
+			.pagina-navegacion a {
+				display: inline-block;
+				padding: 10px 12px;
+				border: 1px solid #333;
+				border-radius: 4px;
+				color: #333;
+				text-decoration: none;
+				background: #fff;
+			}
+			.pagina-navegacion a:hover,
+			.pagina-navegacion a:focus {
+				background: #f2f2f2;
+			}
+			.menu:hover .opciones {
+				display: block;
+			}
+			.opciones {
+				display: none;
+			}
+			input:focus {
+				outline: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="titulo">Registro de estudiantes</div>
+		<div class="menu">
+			Menú
+			<div class="opciones">
+				<div onclick="location.href='inicio.html'">Inicio</div>
+				<div onclick="location.href='ayuda.html'">Ayuda</div>
+			</div>
+		</div>
+		<img src="becas.png">
+		<form>
+			<input type="text" placeholder="Nombre completo">
+			<input type="email" placeholder="Correo institucional">
+			<div class="boton" onclick="enviar()">Enviar</div>
+		</form>
+		<nav class="pagina-navegacion" aria-label="Navegación entre páginas">
+			<a href="correccion_page.html">Ir a la version corregida</a>
+		</nav>
+	</body>
+</html>
