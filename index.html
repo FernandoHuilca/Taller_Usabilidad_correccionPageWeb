@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+<!-- Uso del idioma español  -->
 <html lang="es">
 	<head>
+		<!-- Hemos agregado esta metaInformación -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Registro de estudiantes</title>
@@ -21,6 +23,12 @@
 				position: relative;
 				display: inline-block;
 			}
+			summary.boton {
+				list-style: none;
+			}
+			summary.boton::-webkit-details-marker {
+				display: none;
+			}
 			.opciones {
 				display: none;
 				position: absolute;
@@ -33,8 +41,7 @@
 				list-style: none;
 				min-width: 140px;
 			}
-			/* Allow keyboard focus to show the menu without JS */
-			.menu:focus-within .opciones {
+			.menu[open] .opciones {
 				display: block;
 			}
 			.opciones a {
@@ -69,6 +76,7 @@
 			.pagina-navegacion a:focus {
 				background: #eaf2ff;
 			}
+
 			form > div { margin-bottom: 10px; }
 		</style>
 	</head>
@@ -77,18 +85,18 @@
 
 		
 		<nav aria-label="Menú principal">
-			<div class="menu">
-				<button type="button" id="menuButton" aria-expanded="false" aria-controls="menuList">Menú</button>
-				<ul id="menuList" class="opciones" role="menu" aria-hidden="true">
-					<li role="none"><a role="menuitem" href="inicio.html">Inicio</a></li>
-					<li role="none"><a role="menuitem" href="ayuda.html">Ayuda</a></li>
+			<details class="menu">
+				<summary class="boton">Menú</summary>
+				<ul class="opciones">
+					<li><a href="inicio.html">Inicio</a></li>
+					<li><a href="ayuda.html">Ayuda</a></li>
 				</ul>
-			</div>
+			</details>
 		</nav>
+<!--  hemos agregado una desciripción alternativa para mejorar la accesibilidad de la imagen.-->
+		<img src="Images\becas_info.jpeg" alt="Información sobre becas"> 
 
-		<img src="Images\becas_info.jpeg" alt="Información sobre becas">
-
-		<form action="#" method="post" onsubmit="return handleSubmit(event);">
+		<form aria-label="Formulario de registro de estudiantes">
 			<div>
 				<label for="nombre">Nombre completo</label>
 				<input id="nombre" name="nombre" type="text" placeholder="Nombre completo">
@@ -104,54 +112,10 @@
 		
 		
 		<nav class="pagina-navegacion" aria-label="Navegación entre páginas">
-			<a href="evaluacion_page.html">Ir a la version anterior</a>
+			<a href="evaluacion_page.html">Ir a la versión anterior</a>
 		</nav>
 
 
-		<script>
-			(function(){
-				const menuButton = document.getElementById('menuButton');
-				const menuList = document.getElementById('menuList');
-
-				menuButton.addEventListener('click', function(){
-					const expanded = this.getAttribute('aria-expanded') === 'true';
-					this.setAttribute('aria-expanded', String(!expanded));
-					menuList.style.display = expanded ? 'none' : 'block';
-					menuList.setAttribute('aria-hidden', String(expanded));
-				});
-
-				menuButton.addEventListener('keydown', function(e){
-					if(e.key === 'ArrowDown'){
-						e.preventDefault();
-						const first = menuList.querySelector('a');
-						if(first) first.focus();
-					}
-				});
-
-				menuList.addEventListener('keydown', function(e){
-					const items = Array.from(menuList.querySelectorAll('a'));
-					let idx = items.indexOf(document.activeElement);
-					if(e.key === 'ArrowDown'){
-						e.preventDefault();
-						items[(idx+1) % items.length].focus();
-					} else if(e.key === 'ArrowUp'){
-						e.preventDefault();
-						items[(idx-1 + items.length) % items.length].focus();
-					} else if(e.key === 'Escape'){
-						menuButton.focus();
-						menuButton.setAttribute('aria-expanded','false');
-						menuList.style.display = 'none';
-						menuList.setAttribute('aria-hidden','true');
-					}
-				});
-			})();
-
-			function handleSubmit(e){
-				e.preventDefault();
-				// Implementar envío real aquí. Por ahora sólo demostración.
-				alert('Formulario enviado (simulado).');
-				return false;
-			}
-		</script>
 	</body>
+	
 </html>
